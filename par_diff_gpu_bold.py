@@ -56,7 +56,7 @@ def llm_process(df, gpu_device, file_name):
     config_data = json.load(open("config.json"))
     
     HF_TOKEN = config_data["HF_TOKEN"]
-    model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+    model_id = "meta-llama/Meta-Llama-3-70B-Instruct"
     
     tokenizer = AutoTokenizer.from_pretrained(model_id,
                                               token=HF_TOKEN)
@@ -140,7 +140,7 @@ if __name__ == "__main__":
 
     file_name = "df_bold_filtered.parquet"
     df = pd.read_parquet(file_name, engine='fastparquet') 
-    df = df[:10]
+    
     df_list = np.array_split(df, num_gpus)
 
     # Create a queue to collect results
